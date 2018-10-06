@@ -36,9 +36,26 @@ test_that("pangram with mixed case and punctuation", {
     expect_true(is_pangram("\"Five quacking Zephyrs jolt my wax bed.\""))
 })
 
-test_that("upper and lower case versions of the same character should not be 
+test_that("upper and lower case versions of the same character should not be
           counted separately", {
     expect_false(is_pangram("the quick brown fox jumped over the lazy FOX"))
+})
+
+test_that("The submission can handle vector inputs", {
+    expect_true (all (
+      is_pangram(c(
+        "",
+        "the quick brown fox jumps over the lazy dog",
+        "a quick movement of the enemy will jeopardize five gunboats",
+        "the quick brown fish jumps over the lazy dog",
+        "the_quick_brown_fox_jumps_over_the_lazy_dog",
+        "the 1 quick brown fox jumps over the 2 lazy dogs",
+        "7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog",
+        "\"Five quacking Zephyrs jolt my wax bed.\"",
+        "the quick brown fox jumped over the lazy FOX")) ==
+        c(FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE, FALSE)
+      )
+    )
 })
 
 message("All tests passed for exercise: pangram")

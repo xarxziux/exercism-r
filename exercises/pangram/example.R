@@ -1,6 +1,6 @@
 library(magrittr)
 
-is_pangram <- function(input) {
+is_pangram_scalar <- function(input) {
 
   input_letters <- gsub("[^A-Za-z]", "", input) %>% 
                     tolower() %>% 
@@ -12,3 +12,5 @@ is_pangram <- function(input) {
   identical(input_letters, letters)
 
 }
+
+is_pangram <- Vectorize(is_pangram_scalar)
