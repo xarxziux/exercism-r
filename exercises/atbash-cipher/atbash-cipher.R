@@ -1,0 +1,3 @@
+atbash-cipher <- function(input) {
+
+}
